@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import Login from './Login'
 import Register from './Register'
+import LoadingBar from 'react-redux-loading'
 // if I want the css by default I can import App.css
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <LoadingBar />
         {this.props.loading === true 
           ? null
           : <Login />}
