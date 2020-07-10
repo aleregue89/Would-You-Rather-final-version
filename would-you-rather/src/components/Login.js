@@ -50,7 +50,7 @@ class Login extends Component {
                             </option>
                         ))}
                 </select>
-                <button className="log-in" onClick={this.handleLogin}>Log in</button>
+                <button className="log-in" onClick={this.handleLogin} >Log in</button>
             </div>
         )
     }

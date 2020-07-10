@@ -1,7 +1,17 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import Login from './Login'
+
 
 class Home extends Component {
     render() {
+
+        const {users, questions, authedUser} = this.props
+
+        if(authedUser === null) {
+            return <Login />
+        }
+
         return (
             <div>
                 Home page 
@@ -11,4 +21,12 @@ class Home extends Component {
 
 }
 
-export default Home
+function mapStateToProps(users, questions, authedUser) {
+    return {
+        users: users,
+        authedUser,
+    }
+
+}
+
+export default connect(mapStateToProps)(Home)
