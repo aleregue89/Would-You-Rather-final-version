@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '/home/alejandro/Udacity/Would-You-Rather-final-version/would-you-rather/src/icons/icons8-european-dragon-48.png',
+    avatarURL: 'https://api.adorable.io/avatars/200/6e59712a573ef74a3d2df4f34411b207.png',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',

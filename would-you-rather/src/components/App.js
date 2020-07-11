@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 // if I want the css by default I can import App.css
 import '../App.css'
 import Home from './Home'
+import Nav from './Nav'
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Nav />
           {authedUser === null ? (
             <Route
               render = {() => (
