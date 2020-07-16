@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: '/home/alejandro/Udacity/Would-You-Rather-final-version/would-you-rather/src/icons/icons8-butterfly-48.png',
+    avatarURL: 'https://gravatar.com/avatar/93792bb347aec5afec78e11f88dd236c?s=200&d=robohash&r=x',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: '/home/alejandro/Udacity/Would-You-Rather-final-version/would-you-rather/src/icons/icons8-falcon-48.png',
+    avatarURL: 'https://gravatar.com/avatar/46cd488be37585393ecfee002d008053?s=400&d=robohash&r=x',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

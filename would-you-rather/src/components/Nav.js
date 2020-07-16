@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {authedUser, setAuthedUser} from '../actions/authedUser'
+import {setAuthedUser} from '../actions/authedUser'
 
 
 class Nav extends Component {
@@ -50,7 +50,7 @@ class Nav extends Component {
                     {image}
                     <p>{name}</p>
                 </div>
-                <button className="log-out" onClick={this.handleLogout}>Logout</button>
+                <button className="log-out" icon="log out" size="mini" onClick={this.handleLogout}>Logout</button>
             </nav>
         )
     }

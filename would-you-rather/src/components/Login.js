@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
+import '../styles/Login.css'
 
 class Login extends Component {
 
@@ -39,10 +40,13 @@ class Login extends Component {
         console.log(this.props)
         
         return (
-            <div>
-                <h3 className='center'>Welcome to the Would you rather app!</h3>
+            <div className="login">
+                <div className="header-container">
+                    <h3 className='title'>Welcome to the Would you rather app!</h3>
+                </div>
+                
                 <h4 style={{marginTop: 200}}>Please Login with your user</h4>
-                <select className="select-user" onChange={this.handleChange}>
+                <select className="user-selection" onChange={this.handleChange}>
                     <option value=''>--Please select user--</option>
                         {this.props.users.map(user => (
                             <option key={user.id} value={user.id}>
@@ -50,7 +54,7 @@ class Login extends Component {
                             </option>
                         ))}
                 </select>
-                <button className="log-in" onClick={this.handleLogin} >Log in</button>
+                <button className="login-button" onClick={this.handleLogin} >Log in</button>
             </div>
         )
     }

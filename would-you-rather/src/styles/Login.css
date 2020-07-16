@@ -1,0 +1,53 @@
+.signout-button {
+    height: 30px;
+    margin-left: 100px;
+    border-radius: 5px;
+    background-color: lightseagreen;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .login {
+    margin: auto;
+    margin-top: 100px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+  
+  .header-container {
+    height: 40px;
+    background-color: lightgreen;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+  
+  .user-selection {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+  }
+  
+  .small-avatar {
+    border-radius: 100%;
+  }
+  
+  .login-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  .title {
+    margin: 0;
+    height: 40px;
+    border-bottom: 1px solid black;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    color: white;
+  }
+
+  
+

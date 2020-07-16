@@ -1,0 +1,34 @@
+.home {
+    margin: auto;
+    margin-top: 60px;
+    max-width: 500px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+  }
+
+  .home-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .unanswered-questions-container {
+    cursor: pointer;
+    width: 50%;
+  }
+
+  .answered-questions-container {
+    cursor: pointer;
+    width: 50%;
+    border-left: 1px solid lightgray;
+  }
+
+  .tab-header {
+    color: lightseagreen;
+  }
+
+  .list {
+    padding: 0;
+    list-style: none;
+  }
