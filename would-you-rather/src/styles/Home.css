@@ -8,7 +8,7 @@
 
   .home-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     border-bottom: 1px solid lightgray;
   }

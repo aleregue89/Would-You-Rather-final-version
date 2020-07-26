@@ -1,0 +1,44 @@
+.poll-question-container {
+    border: 1px solid lightgray;
+    max-width: 500px;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 60px;
+  }
+
+  .question-header-container {
+    position: sticky;
+    margin-top: 0;
+    height: 40px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: lightseagreen;
+  }
+
+  .question-user-header {
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
+    width: 200px;
+  }
+
+  .question-poll {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .question-poll-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
+  }
+
+  .question-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+  }

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
 
 
+
 class Nav extends Component {
 
      // handling logout
@@ -21,36 +22,50 @@ class Nav extends Component {
         const {user} = this.props
 
         // handling avatar 
-        let image = <img style={{borderRadius: '100%', height: 30, width: 30, marginLeft: 15}} 
+        let image = ''
+        let name = user.name
+        let welcomeMSG = ''
+
+        // conditional for handling nav (name and avatar)
+        if (user) {
+            welcomeMSG = 'Welcome, ' + name
+            image = <img style={{borderRadius: '100%', height: 30, width: 30, marginLeft: 15}} 
                         alt="user-avatar"
                         src= {user.avatarURL}/>
-
-        let name = user.name
+        } else {
+            image = ''
+            welcomeMSG = ''
+        }
 
         return (
-            <nav className='nav'>
+            <nav className="nav">
                 <ul>
                     <li>
-                        <NavLink to='/' exact style={{textDecoration: 'none',width: '100', color: 'orange'}}>
+                        <NavLink to='/' exact style={{textDecoration: 'none',width: '100', color: 'black'}}>
                             Home
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/new' style={{textDecoration: 'none',width: '100', color: 'orange'}}>
+                        <NavLink to='/new' style={{textDecoration: 'none',width: '100', color: 'black'}}>
                             New Question
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/leaderboard' style={{textDecoration: 'none',width: '100', color: 'orange'}}>
+                        <NavLink to='/leaderboard' style={{textDecoration: 'none',width: '100', color: 'black'}}>
                             Leaderboard
                         </NavLink>
                     </li>
                 </ul>
                 <div className="nav-msg" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     {image}
-                    <p>{name}</p>
+                    <p>{welcomeMSG}</p>
                 </div>
-                <button className="log-out" icon="log out" size="mini" onClick={this.handleLogout}>Logout</button>
+                { user ? <button className="log-out" icon="log out" size="mini" onClick={this.handleLogout}>Logout</button>
+                    : ( <NavLink to="/Signup" exact style={{textDecoration: 'none', color: 'lightseagreen'}}>
+                        Sign-Up
+                        </NavLink>
+
+                )}
             </nav>
         )
     }

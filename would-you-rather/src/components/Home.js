@@ -3,35 +3,37 @@ import {connect} from 'react-redux'
 import Login from './Login'
 import '../styles/Nav.css'
 import '../styles/Home.css'
+import '../styles/Tab.css'
 import UserCard from './UserCard'
 
 
-class Home extends Component {
+class Home extends React.Component {
 
-    // setting state for component
-    state = {
-        unansweredTab : true,
-        answeredTab: false
+    // handling TAB event
+    handleOpenTab = (event, tabName) => {
+
+        // variable declaration
+        let i
+        let tabcontent
+        let tablinks
+
+        tabcontent = document.getElementsByClassName("tabcontent")
+        for (i=0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display="none"
+        }
+
+        tablinks = document.getElementsByClassName("tablinks")
+        for (i=0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "") 
+        }
+
+        document.getElementById(tabName).style.display="block"
+        event.currentTarget.className += " active"
     }
-
-   // handling onClick events
-   handleAnsweredTab = () => {
-       this.setState = ({
-           unansweredTab : false,
-           answeredTab : true
-       })
-   }
-
-   handleUnansweredTab = () => {
-       this.setState = ({
-           unansweredTab : true,
-           answeredTab : false
-       })
-   }
 
     render() {
 
-        const {users, questions, authedUser, answered, unanswered} = this.props
+        const {authedUser, answered, unanswered, users} = this.props
         
 
         if(authedUser === null) {
@@ -41,79 +43,63 @@ class Home extends Component {
         return (
             <div className="home">
                 <div className="home-header">
-                    {this.state.unansweredTab === true
-                        ? <div className="unanswered-questions-container" onClick={this.handleUnansweredTab}>
-                               <h3 className="tab-header">Unanswered Questions</h3>
-                        </div>
-                        : <div className="unanswered-questions-container" onClick={this.handleUnansweredTab}>
-                               <h3>Unanswered Questions</h3>
-                        </div>
-                    }
-                    {this.state.answeredTab === true
-                        ? <div className="answered-questions-container" onClick={this.handleAnsweredTab}>
-                               <h3 className="tab-header">Answered Questions</h3>
-                        </div>
-                        : <div className="answered-questions-container" onClick={this.handleAnsweredTab}>
-                               <h3>Answered Questions</h3>
-                        </div>
-                    }
+                    <div className="tab">
+                        <button id="defaultOpen" className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'unanswered')}}>Unanswered Questions</button>
+                        <button className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'answered')}}>Answered Questions</button>
+                    </div>
+                    <div id="unanswered" className="tabcontent">
+                        <ul className="list">
+                            {answered.map((question, index) => {
+                                if(question.optionOne.votes.includes(authedUser) === false) {
+                                    return (
+                                        <div key={question.id}>
+                                            <UserCard key={index}
+                                                      question={question}
+                                                      option={question.optionOne}
+                                                      users={users}
+                                                      unanswered={true}
+                                            />
+                                        </div>
+                                    )    
+                                } 
+                                return true
+                            })}
+                        </ul> 
+                    </div>
+                    <div id="answered" className="tabcontent">
+                        <ul className="list">
+                            {unanswered.map((question, index) => {
+                                if(question.optionOne.votes.includes(authedUser)) {
+                                    return (
+                                        <UserCard key={question.id}
+                                                  question={question}
+                                                  option={question.optionOne}
+                                                  users={users}
+                                                  unanswered={false}
+                                        />
+                                    )
+                                }
+                                return true 
+                            })}
+                        </ul>
+                        <ul className="list">
+                            {unanswered.map((question, index) => {
+                                if(question.optionTwo.votes.includes(authedUser)) {
+                                    return (
+                                        <UserCard key={index}
+                                                  question={question}
+                                                  option={question.optionTwo}
+                                                  users={users}
+                                                  unanswered={false}
+                                        />
+                                    )
+                                }
+                                return true
+                            })}
+                        </ul>
+                    </div>
                 </div>
-                <div className="container">
-                    {this.state.unansweredTab === true
-                        ? (
-                            <div className="unanswered-container">
-                                <ul className="list">
-                                    {unanswered.map((question, index) => {
-                                        if(question.optionOne.votes.includes(authedUser) === false) {
-                                            return (
-                                                <div key={question.id}>
-                                                    <UserCard key={index}
-                                                              question={question}
-                                                              option={question.optionOne}
-                                                              users={users}
-                                                    />
-                                                </div>
-                                            )
-                                        }
-                                        return true
-                                    })}
-                                </ul>
-                            </div>
-                        )
-                        : (
-                            <div className="answered-container">
-                                <ul className="list">
-                                    {answered.map((question, index) => {
-                                        if(question.optionOne.votes.includes(authedUser)) {
-                                            return (
-                                                    <UserCard key={question.id}
-                                                              question={question}
-                                                              option={question.optionOne}
-                                                              users={users}
-                                                    />
-                                            )
-                                        }
-                                        return true
-                                    })}
-                                </ul>
-                                <ul className="list">
-                                    {answered.map((question, index) => {
-                                        if(question.optionTwo.votes.includes(authedUser)) {
-                                            return (
-                                                <UserCard key={question.id}
-                                                          question={question}
-                                                          option={question.optionTwo}
-                                                          users={users}
-                                                />
-                                            )
-                                        }
-                                        return true
-                                    })}
-                                </ul>
-                            </div>
-                        )
-                    }
-                </div>
+                
             </div>
                 
         )
@@ -123,11 +109,12 @@ class Home extends Component {
 
 function mapStateToProps({users, questions, authedUser}) {
 
+    //getting all the answers id from
     const answeredIds = Object.keys(users[authedUser].answers)
-    const answered = Object.values(questions).filter(question => answeredIds.includes(question.id))
+    const answered = Object.values(questions).filter(question => !answeredIds.includes(question.id))
         .sort((a, b) => b.timestamp - a.timestamp)
-    const unanswered = Object.values(questions).filter(question => !answeredIds.includes(question.id))
-        .sort((a, b) => b.timestamp -a.timestamp)
+    const unanswered = Object.values(questions).filter(question => answeredIds.includes(question.id))
+        .sort((a, b) => b.timestamp - a.timestamp)
 
     return {
         users: users,
