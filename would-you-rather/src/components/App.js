@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import Login from './Login'
@@ -19,8 +19,6 @@ class App extends React.Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
-
-    const {authedUser} = this.props
 
     return (
       <Router>

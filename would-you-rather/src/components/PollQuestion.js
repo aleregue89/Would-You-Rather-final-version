@@ -110,8 +110,6 @@ class PollQuestion extends Component {
             return <ErrorPage />
         }
     
-
-
         return (
             <div className="poll-question-container">
                 <div className="question-header-container">
@@ -177,31 +175,3 @@ function mapStateToProps({authedUser, questions, users}, {match}) {
 }
 
 export default connect(mapStateToProps)(PollQuestion)
-
-
-/*
-<div className="poll-form">
-                <form className="options-form" onSubmit={this.handleSubmit}>
-                <h3>Would you rather...</h3>
-                    <div>
-                        <input 
-                            style={{display: 'inline', marginLeft: 10}} 
-                            type="radio" 
-                            name="option" 
-                            value="optionOne"
-                            onChange={this.handleChange}
-                        /> <p style={{display: 'inline'}}>{question.optionOne.text}</p>
-                    </div>
-                    <div>
-                        <input 
-                            style={{display: 'inline', marginLeft: 18}} 
-                            type="radio" name="option" 
-                            value="optionTwo" 
-                            onChange={this.handleChange}
-                        /> <p style={{display: 'inline'}}>question</p>
-                    </div>
-
-                    <button className="poll-button" style={{marginTop: 30}}>Submit</button>
-                </form>
-            </div> 
-*/
