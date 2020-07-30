@@ -31,8 +31,8 @@
   }
 
   .question-poll-avatar {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     border-radius: 100%;
   }
 
@@ -41,4 +41,18 @@
     flex-direction: row;
     justify-content: space-around;
     align-content: center;
+  }
+
+  .answer {
+    color:lightseagreen;
+  }
+
+  .back {
+    height: 30px;
+    margin-left: 100px;
+    border-radius: 5px;
+    background-color: lightseagreen;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
   }

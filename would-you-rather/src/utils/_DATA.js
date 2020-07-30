@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: 'https://gravatar.com/avatar/93792bb347aec5afec78e11f88dd236c?s=200&d=robohash&r=x',
+    avatarURL: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=longHair&options[accessoriesChance]=93',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://api.adorable.io/avatars/200/6e59712a573ef74a3d2df4f34411b207.png',
+    avatarURL: 'https://avatars.dicebear.com/api/avataaars/example.svg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://gravatar.com/avatar/46cd488be37585393ecfee002d008053?s=400&d=robohash&r=x',
+    avatarURL: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=eyepatch',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',

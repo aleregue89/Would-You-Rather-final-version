@@ -35,7 +35,7 @@
 
   .user-score-header {
     border-bottom: 1px solid lightgray;
-    background-color: aliceblue;
+    background-color: rgb(68, 71, 75)
   }
 
   .total-score {

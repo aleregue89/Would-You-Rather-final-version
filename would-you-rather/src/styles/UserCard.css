@@ -9,9 +9,10 @@
   
   .user-poll-header {
     border-bottom: 1px solid lightgray;
+    background-color: rgb(68, 71, 75);
   }
   
-  .user-poll-header h3 {
+  .user-poll-header h4 {
     width: 50%;
   }
   

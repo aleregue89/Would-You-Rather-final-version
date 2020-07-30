@@ -3,8 +3,6 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
 
-
-
 class Nav extends Component {
 
      // handling logout
@@ -61,9 +59,9 @@ class Nav extends Component {
                     <p>{welcomeMSG}</p>
                 </div>
                 { user ? <button className="log-out" icon="log out" size="mini" onClick={this.handleLogout}>Logout</button>
-                    : ( <NavLink to="/Signup" exact style={{textDecoration: 'none', color: 'lightseagreen'}}>
-                        Sign-Up
-                        </NavLink>
+                    : ( <NavLink to="/Login" exact style={{textDecoration: 'none', color: 'lightseagreen'}}>
+                        
+                    </NavLink>
 
                 )}
             </nav>

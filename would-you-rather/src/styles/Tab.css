@@ -19,7 +19,7 @@
 }
 
 .tab button.active {
-    background-color: #ccc;
+    background-color: rgb(68, 71, 75);
 }
 
 .tabcontent {

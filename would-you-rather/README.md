@@ -1,3 +1,41 @@
+Project: Woul you rather...
+Author: Alejandro Regueira
+
+## Projecct Overview
+In the "Would You Rather?" Project, I'll build a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
+
+In this app, users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
+
+## Data:
+
+There are two types of objects stored in our database:
+
+    Users
+    Questions
+
+User's include:
+ATTRIBUTE    TYPE         DESCRIPTION
+id           string       The user’s unique identifier
+name         string       The user’s first name and last name
+avatarURL    string       The path to the image file
+questions    array        A list of ids of the polling questions this user created
+answers      object       The object's keys are the ids of each question this user answered.   
+                          The value of each key is the answer the user selected. It can be
+                          'optionOne' or 'optionTwo' since each question has two options.
+
+Question's include:
+ATTRIBUTE   TYPE          DESCRIPTION
+id          string        The question’s unique identifier
+author      string        The author’s unique identifier
+timestamp   string        The time when the question was created
+optionOne   object        The first voting option
+optionTwo   object        The second voting option
+
+## installing
+To run the project:
+1) npm install
+2) npm start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

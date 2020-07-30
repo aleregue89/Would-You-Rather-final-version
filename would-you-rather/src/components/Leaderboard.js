@@ -22,15 +22,15 @@ class Leaderboard extends React.Component {
                         </div>
 
                         <div className="user-stats">
-                            <h2 style={{color: "lightseagreen"}}>{user.name}</h2>
-                            <h4>Answered Questions: {user.answeredQuestions}</h4>
-                            <h4 style={{borderTop: "0.5px solid lightgrey"}}>Created Questions: {user.createdQuestions}</h4>
+                            <h2 style={{color: "lightseagreen", marginLeft: 10}}>{user.name}</h2>
+                            <h4 style={{marginLeft: 10}}>Answered Questions: {user.answeredQuestions}</h4>
+                            <h4 style={{borderTop: "0.3px solid lightgrey", marginLeft: 10}}>Created Questions: {user.createdQuestions}</h4>
                         </div>
 
                         <div className="user-score">
                             <div className="user-score-container">
                                 <div className="user-score-header">
-                                    <h3 style={{textAlign: "center"}}>Score</h3>
+                                    <h3 style={{textAlign: "center", marginTop: 0.1, color: "lightseagreen"}}>Score</h3>
                                 </div>
                                 <div className="total-score">
                                     <p style={{marginTop: 10, textAlign: "center"}}>{user.totalScore}</p>

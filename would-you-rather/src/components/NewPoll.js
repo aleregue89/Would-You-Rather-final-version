@@ -38,18 +38,14 @@ class NewPoll extends Component {
         const {optionOne, optionTwo} = this.state
         const {authedUser, dispatch} = this.props
 
-        new Promise((res, rej) => {
-            dispatch(handleSaveQuestion(optionOne, optionTwo, authedUser))
-            setTimeout(() => res('completed'), 1000)
-        }).then(() => {
-            this.setState({
-                optionOne : '',
-                optionTwo : ''
-            })
-            this.setState({
-                submitted : true
-            })
+        // trying something new
+        dispatch(handleSaveQuestion(optionOne, optionTwo, authedUser))
+        this.setState({
+            optionOne: '',
+            optionTwo: '',
+            submitted: true
         })
+
     }
 
     render() {
@@ -72,11 +68,10 @@ class NewPoll extends Component {
         return (
             <div className="question-container">
                 <div className="question-header">
-                    <h2>Create New Question Form</h2>
+                    <h2 style={{textAlign: "center", color: "lightseagreen", marginTop: 0}}>Create New Question Form</h2>
                 </div>
                 <div>
-                    <h5 style={{marginTop: 10, width: 200}}>Complete the question:</h5>
-                    <h3 style={{marginTop: 20, marginBottom: 10, width: 200}}>Would you rather...</h3>
+                    <h3 style={{marginTop: 20, marginBottom: 10, width: 200, marginLeft: 10}}>Would you rather...</h3>
                     <form className="question-form" onSubmit={this.handleSubmit}>
                         <input className="question-input" type="text" placeholder="Enter option one..." value={this.state.optionOne} onChange={this.handleOptionOne}></input>
                             <h4 style={{margin: 0, marginTop: 7}}>or</h4>
@@ -91,7 +86,7 @@ class NewPoll extends Component {
     }
 }
 
-function mapStateToProps({users, questions, authedUser}) {
+function mapStateToProps({authedUser}) {
     return {
         authedUser : authedUser
     }

@@ -36,7 +36,6 @@ class Login extends Component {
     
     render() {
 
-        // redirect goes here
         console.log(this.props)
         
         return (
@@ -45,7 +44,6 @@ class Login extends Component {
                     <h3 className='title'>Welcome to the Would you rather app!</h3>
                 </div>
                 
-                <h4 style={{marginTop: 200}}>Please Login with your user</h4>
                 <select className="user-selection" onChange={this.handleChange}>
                     <option value=''>--Please select user--</option>
                         {this.props.users.map(user => (

@@ -11,7 +11,7 @@ import Nav from './Nav'
 import PollQuestion from './PollQuestion';
 import NewPoll from './NewPoll'
 import Leaderboard from './Leaderboard';
-import Signup from './Signup';
+import ErrorPage from './ErrorPage'
 
 
 class App extends React.Component {
@@ -28,22 +28,15 @@ class App extends React.Component {
           <LoadingBar style={{backgroundColor: 'red'}}/>
           <div className="App">
             <Nav />
-            {authedUser === null ? (
-              <Route 
-                render = {() => ( 
-                    <Login /> 
-                )} 
-              />
-            ) : (
               <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/Login" exact component={Login}/>
                 <Route path="/questions/:question_id" exact component={PollQuestion}/>
                 <Route path="/new" exact component={NewPoll}/>
                 <Route path="/leaderboard" exact component={Leaderboard}/>
-                <Route path="/Signup" exact component={Signup}/>
+                <Redirect from="/questions/:question_id" to="/404page"/>
+                <Route component={ErrorPage}/>
               </Switch>
-            )}
           </div>
         </Fragment>
       </Router>
@@ -60,27 +53,3 @@ function mapStateToProps({authedUser}) {
 }
 
 export default connect(mapStateToProps)(App);
-
-
-
-/*
-return (
-      <Router>
-        <div className="App">
-          <Nav />
-          {authedUser === null ? (
-            <Route
-              render = {() => (
-                <Login />
-              )}
-            />
-          ) : (
-            <Fragment>
-              <Route exact path="/" component={Home}/>
-            </Fragment>
-          )
-          }
-        </div>
-      </Router>
-    )
-*/

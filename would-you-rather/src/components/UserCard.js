@@ -14,7 +14,7 @@ const UserCard = (props) => {
     return (
         <li className="user-poll-list">
             <div className="user-poll-header">
-                <h5 style={{textAlign: "center"}}>{author} asks:</h5>
+                <h4 style={{textAlign: "center", color: "lightseagreen", marginTop: 0}}>{author} asks:</h4>
             </div>
 
             <div className="user-container">
@@ -24,6 +24,7 @@ const UserCard = (props) => {
                 <div className="question-poll-container">
                     <h3>Would you rather</h3>
                     <p>{questionText}</p>
+                    <p>or...</p>
                     <Link to={`/questions/${props.question.id}`} 
                           className="question-poll-button"
                           style={{marginBottom: 20, textDecoration: 'none'}}

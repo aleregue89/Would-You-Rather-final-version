@@ -31,6 +31,12 @@ class Home extends React.Component {
         event.currentTarget.className += " active"
     }
 
+    handleOnLoad = (event, tagId) => {
+        event.preventDefault()
+
+        document.getElementById(tagId).click()
+    }
+
     render() {
 
         const {authedUser, answered, unanswered, users} = this.props
@@ -41,15 +47,15 @@ class Home extends React.Component {
         }
 
         return (
-            <div className="home">
+            <div className="home" onLoad={(event) => {this.handleOnLoad(event, 'defaultOpen')}}>
                 <div className="home-header">
                     <div className="tab">
-                        <button id="defaultOpen" className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'unanswered')}}>Unanswered Questions</button>
-                        <button className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'answered')}}>Answered Questions</button>
+                        <button id="defaultOpen" onLoad={this.handleOnLoad} className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'unanswered')}} style={{color: "lightseagreen"}}>Unanswered Questions</button>
+                        <button className="tablinks" onClick={(event) => {this.handleOpenTab(event, 'answered')}} style={{color: "lightseagreen"}}>Answered Questions</button>
                     </div>
                     <div id="unanswered" className="tabcontent">
                         <ul className="list">
-                            {answered.map((question, index) => {
+                            {unanswered.map((question, index) => {
                                 if(question.optionOne.votes.includes(authedUser) === false) {
                                     return (
                                         <div key={question.id}>
@@ -68,7 +74,7 @@ class Home extends React.Component {
                     </div>
                     <div id="answered" className="tabcontent">
                         <ul className="list">
-                            {unanswered.map((question, index) => {
+                            {answered.map((question, index) => {
                                 if(question.optionOne.votes.includes(authedUser)) {
                                     return (
                                         <UserCard key={question.id}
@@ -83,7 +89,7 @@ class Home extends React.Component {
                             })}
                         </ul>
                         <ul className="list">
-                            {unanswered.map((question, index) => {
+                            {answered.map((question, index) => {
                                 if(question.optionTwo.votes.includes(authedUser)) {
                                     return (
                                         <UserCard key={index}
@@ -109,12 +115,30 @@ class Home extends React.Component {
 
 function mapStateToProps({users, questions, authedUser}) {
 
-    //getting all the answers id from
-    const answeredIds = Object.keys(users[authedUser].answers)
-    const answered = Object.values(questions).filter(question => !answeredIds.includes(question.id))
-        .sort((a, b) => b.timestamp - a.timestamp)
-    const unanswered = Object.values(questions).filter(question => answeredIds.includes(question.id))
-        .sort((a, b) => b.timestamp - a.timestamp)
+    // mapping the questions 
+    let arrayOfQuestions = Object.keys(questions).map(key => questions[key])
+    // I will be deducting the answers[authedUser] from here
+    let arraySet = new Set(arrayOfQuestions)
+
+    let arrayOfAnswers = []
+    if(authedUser !== null) {
+
+        arrayOfAnswers = Object.keys(users[authedUser].answers).map(key => {
+            return questions[key]
+        })
+
+        // deleting the answers[authedUser] from the arraySet
+        arrayOfAnswers.map((answeredQuestion) => {
+            return arraySet.delete(answeredQuestion)
+        })
+    }
+
+    //defining my unanswered questions
+    let unansweredQuestions = [...arraySet]
+
+    // sorting my answered and unanswered questions
+    let answered = arrayOfAnswers.sort((a, b) => b.timestamp - a.timestamp)
+    let unanswered = unansweredQuestions.sort((a, b) => b.timestamp - a.timestamp)
 
     return {
         users: users,

@@ -4,6 +4,7 @@ import {handleSaveQuestionAnswer} from '../actions/users'
 import Login from './Login'
 import '../styles/PollQuestion.css'
 import '../styles/Nav.css'
+import ErrorPage from './ErrorPage'
 
 class PollQuestion extends Component {
 
@@ -34,6 +35,12 @@ class PollQuestion extends Component {
         }
     }
 
+    handleClick = (event) => {
+        event.preventDefault()
+
+        this.props.history.push('/')
+    }
+
     render() {
 
         const {authedUser, question, totalNumberOfUsers, authedUser_answersArray, authedUser_selectedAnswer, authedUser_unselectedAnswer, question_user} = this.props
@@ -46,8 +53,8 @@ class PollQuestion extends Component {
         const optionOneVotes = question.optionOne.votes.length
         const optionTwoVotes = question.optionTwo.votes.length
         const totalVotes = optionOneVotes + optionTwoVotes
-
-
+        const optionOneAvg = ((optionOneVotes/totalVotes) * 100).toFixed(2)
+        const optionTwoAVG = ((optionTwoVotes/totalVotes) * 100).toFixed(2)
 
         // defining the different Poll-views
         let pollView = ''
@@ -58,16 +65,20 @@ class PollQuestion extends Component {
                     <div className="answers">
                         <h2>Votes:</h2>
                         <div className="selected-answer">
-                            <h5>Would you rather {question[authedUser_selectedAnswer].text}</h5>
-                            <h5>{question[authedUser_selectedAnswer].votes.length} votes for same answer</h5>
-                            <h5>{Math.floor((question[authedUser_selectedAnswer].votes.length / totalNumberOfUsers) * 100)}%</h5>
+                            <h5>Would you rather</h5>
+                            <h5>{question.optionOne.text} </h5>
+                            <h5>{optionOneVotes} out of {totalVotes} votes {optionOneAvg}%</h5>
                         </div>
                         <div className="unselected-answer">
-                            <h5>Would you rather {authedUser_unselectedAnswer.text}</h5>
-                            <h5>{authedUser_unselectedAnswer.votes.length} votes for same answer</h5>
-                            <h5>{Math.floor((authedUser_unselectedAnswer.votes.length / totalNumberOfUsers) * 100)}%</h5>
+                            <h5>{question.optionTwo.text}</h5>
+                            <h5>{optionTwoVotes} out of {totalVotes} votes {optionTwoAVG}%</h5>
+                        </div>
+                        <h5 className="answer">Your answer: {question[authedUser_selectedAnswer].text}</h5>
+                        <div>
+                            <button className="back" icon="back" size="mini" onClick={this.handleClick}>Back</button>
                         </div>
                     </div>
+                        
                 )
             } else {
                 pollView = (
@@ -92,10 +103,13 @@ class PollQuestion extends Component {
                         </div>
 
                         <button className="poll-button" style={{marginTop: 30}}>Submit</button>
-                </form>
+                    </form>
                 )
-            }
-    }
+            } 
+        } else {
+            return <ErrorPage />
+        }
+    
 
 
         return (
