@@ -5,6 +5,7 @@ import Login from './Login'
 import '../styles/PollQuestion.css'
 import '../styles/Nav.css'
 import ErrorPage from './ErrorPage'
+import {Redirect} from 'react-router-dom'
 
 class PollQuestion extends Component {
 
@@ -43,10 +44,14 @@ class PollQuestion extends Component {
 
     render() {
 
-        const {authedUser, question, totalNumberOfUsers, authedUser_answersArray, authedUser_selectedAnswer, authedUser_unselectedAnswer, question_user} = this.props
+        const {authedUser, question, authedUser_answersArray, authedUser_selectedAnswer, question_user, badUrl} = this.props
 
         if (authedUser === null) {
             return <Login />
+        }
+
+        if (badUrl === true) {
+            return <Redirect to="/questions/bad_id" />
         }
 
         // defining some variables
@@ -58,7 +63,7 @@ class PollQuestion extends Component {
 
         // defining the different Poll-views
         let pollView = ''
-
+        
         if(question !== undefined) {
             if(authedUser_answersArray.includes(question.id)) {
                 pollView = (
@@ -81,31 +86,30 @@ class PollQuestion extends Component {
                         
                 )
             } else {
-                pollView = (
-                    <form className="options-form" onSubmit={this.handleSubmit}>
-                    <h3>Would you rather...</h3>
-                        <div>
-                            <input 
-                                style={{display: 'inline', marginLeft: 10}} 
-                                type="radio" 
-                                name="option" 
-                                value="optionOne"
-                                onChange={this.handleChange}
-                            /> <p style={{display: 'inline'}}>{question.optionOne.text}</p>
-                        </div>
-                        <div>
-                            <input 
-                                style={{display: 'inline', marginLeft: 10}} 
-                                type="radio" name="option" 
-                                value="optionTwo" 
-                                onChange={this.handleChange}
-                            /> <p style={{display: 'inline'}}>{question.optionTwo.text}</p>
-                        </div>
+            pollView = (
+                <form className="options-form" onSubmit={this.handleSubmit}>
+                <h3>Would you rather...</h3>
+                    <div>
+                        <input 
+                            style={{display: 'inline', marginLeft: 10}} 
+                            type="radio" 
+                            name="option" 
+                            value="optionOne"
+                            onChange={this.handleChange}
+                        /> <p style={{display: 'inline'}}>{question.optionOne.text}</p>
+                    </div>
+                    <div>
+                        <input 
+                            style={{display: 'inline', marginLeft: 10}} 
+                            type="radio" name="option" 
+                            value="optionTwo" 
+                            onChange={this.handleChange}
+                        /> <p style={{display: 'inline'}}>{question.optionTwo.text}</p>
+                    </div>
 
-                        <button className="poll-button" style={{marginTop: 30}}>Submit</button>
-                    </form>
-                )
-            } 
+                    <button className="poll-button" style={{marginTop: 30}}>Submit</button>
+                </form>
+            )}  
         } else {
             return <ErrorPage />
         }
@@ -151,16 +155,25 @@ function mapStateToProps({authedUser, questions, users}, {match}) {
     let authedUser_selectedAnswer = {}
     let authedUser_unselectedAnswer = {}
     let authedUser_answersArray = []
+    let badUrl = false
+    let question = questions[question_id]
 
     if(users[authedUser]) {
         authedUser_selectedAnswer = users[authedUser].answers[question_id]
         authedUser_answersArray = Object.keys(users[authedUser].answers)
 
-        if(questions[question_id].optionOne.votes.includes(authedUser)) {
-            authedUser_unselectedAnswer = questions[question_id].optionTwo
-        } else if (questions[question_id].optionTwo.votes.includes(authedUser)) {
-            authedUser_unselectedAnswer = questions[question_id].optionOne
+        if(questions[question_id]) {
+            if(questions[question_id].optionOne.votes.includes(authedUser)) {
+                authedUser_unselectedAnswer = questions[question_id].optionTwo
+            } else if (questions[question_id].optionTwo.votes.includes(authedUser)) {
+                authedUser_unselectedAnswer = questions[question_id].optionOne
+            }
         }
+        
+    }
+
+    if(question === undefined) {
+        badUrl = true
     }
 
     return {
@@ -170,7 +183,8 @@ function mapStateToProps({authedUser, questions, users}, {match}) {
         authedUser_answersArray : authedUser_answersArray,
         authedUser_selectedAnswer : authedUser_selectedAnswer,
         authedUser_unselectedAnswer : authedUser_unselectedAnswer,
-        question_user : question_user
+        question_user : question_user,
+        badUrl
     }
 }
 

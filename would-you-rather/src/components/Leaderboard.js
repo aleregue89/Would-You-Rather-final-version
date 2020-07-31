@@ -3,7 +3,7 @@ import Login from './Login'
 import {connect} from 'react-redux'
 import '../styles/Leaderboard.css'
 
-class Leaderboard extends React.Component {
+class Leaderboard extends Component {
     render() {
 
         // getting the props

@@ -1,12 +1,11 @@
 import {getInitialData} from '../utils/api'
 import {receiveUsers} from './users'
 import {receiveQuestions} from './questions'
-import {setAuthedUser} from '../actions/authedUser'
+//import {setAuthedUser} from '../actions/authedUser'
 import {showLoading, hideLoading} from 'react-redux-loading'
-import {addAnswerToUser} from './users'
-import {addAnswerToQuestion} from './questions'
-import {saveQuestionAnswer} from '../utils/api'
-
+//import {addAnswerToUser} from './users'
+//import {addAnswerToQuestion} from './questions'
+//import {saveQuestionAnswer} from '../utils/api'
 
 // temporaly using tylermcginnis as authedUser
 //const AUTHED_ID = 'tylermcginnis'

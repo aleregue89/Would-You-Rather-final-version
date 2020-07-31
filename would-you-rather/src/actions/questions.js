@@ -1,5 +1,5 @@
 import {saveQuestion} from '../utils/api'
-import {addQuestionToUser} from '../actions/users'
+//import {addQuestionToUser} from '../actions/users'
 
 // export action type
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'

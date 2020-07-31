@@ -7,7 +7,7 @@ import '../styles/Tab.css'
 import UserCard from './UserCard'
 
 
-class Home extends React.Component {
+class Home extends Component {
 
     // handling TAB event
     handleOpenTab = (event, tabName) => {
